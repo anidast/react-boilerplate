@@ -5,7 +5,7 @@ import TopRegion from './TopRegion';
 
 function Cases() {
   return (
-    <div className="box has-background-info m-4">
+    <div className="box has-background-info">
       <ConfirmedNumber />
       <AMonthCases />
       <TopRegion />

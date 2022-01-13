@@ -14,19 +14,25 @@ class TopRegion extends Component {
   };
 
   componentDidMount() {
-    const urlFetch = fetch('https://covid19.mathdro.id/api/daily/1-11-2022');
+    const today = new Date();
+    const url = `https://covid19.mathdro.id/api/daily/${1 +
+      today.getMonth()}-${today.getDate() - 2}-${today.getFullYear()}`;
+    const urlFetch = fetch(url);
 
     urlFetch
       .then(res => res.json())
       .then(resJson => {
         const temp = [];
 
-        resJson.slice(0, 5).forEach(element => {
-          temp.push({
-            state: element.countryRegion,
-            confirmed: element.confirmed,
+        resJson
+          .sort((a, b) => b.confirmed - a.confirmed)
+          .slice(0, 5)
+          .forEach(element => {
+            temp.push({
+              state: element.countryRegion,
+              confirmed: element.confirmed,
+            });
           });
-        });
         this.setState({
           data: temp,
         });

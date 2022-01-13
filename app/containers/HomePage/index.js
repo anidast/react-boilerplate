@@ -6,13 +6,31 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+
+import Navbar from '../../components/Navbar';
+import Sidebar from '../../components/Sidebar';
+import Cases from '../../components/Cases';
 
 export default function HomePage() {
   return (
-    <h1>
-      <FormattedMessage {...messages.header} />
-    </h1>
+    <div>
+      <Navbar />
+
+      <div className="columns">
+        <Sidebar />
+
+        <div className="column">
+          <p className="is-size-5 has-text-grey has-text-weight-bold my-4">
+            Codemi Home
+          </p>
+
+          <div className="columns">
+            <div className="column is-4">
+              <Cases />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
